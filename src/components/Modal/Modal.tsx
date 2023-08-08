@@ -5,13 +5,16 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export default function Modal() {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
@@ -20,14 +23,15 @@ export default function Modal() {
     },
   });
 
-  const OnSubmit: SubmitHandler<FieldValues> = (data) => {
+  const OnSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true);
-
-    axios
+    setValue("title", "", { shouldValidate: true });
+    setValue("desc", "", { shouldValidate: true });
+    await axios
       .post("/api/notes", data)
       .then(() => {
-        console.log("completed");
         toast.success("Note created successfully");
+        router.refresh();
       })
       .catch(() => toast.error("something went wrong"))
       .finally(() => setIsLoading(false));
@@ -83,6 +87,7 @@ export default function Modal() {
                 <Input
                   register={register}
                   label="Enter your title"
+                  errors={errors}
                   id="title"
                   type="text"
                 />
@@ -91,6 +96,7 @@ export default function Modal() {
                 <Input
                   register={register}
                   label="Enter desc"
+                  errors={errors}
                   id="desc"
                   type="text"
                 />
