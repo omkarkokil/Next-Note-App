@@ -8,6 +8,7 @@ interface InputProps {
   label: string;
   id: string;
   disabled?: boolean;
+  value?: string;
   type: string;
   required?: boolean;
   register?: UseFormRegister<FieldValues>;
@@ -22,6 +23,7 @@ const Input: FC<InputProps> = ({
   register,
   errors,
   required,
+  value,
 }) => {
   return (
     <div>
@@ -36,6 +38,7 @@ const Input: FC<InputProps> = ({
           type={type}
           disabled={disabled}
           autoComplete={id}
+          value={value}
           id={id}
           {...(register && { ...register(id, { required }) })}
           className={clsx(

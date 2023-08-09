@@ -3,6 +3,7 @@ import Note from "./components/Note";
 import CreateNote from "./components/CreateNote";
 import getNotes from "../actions/getUserNotes";
 import getCurrentUser from "../actions/getCurrentUser";
+import Modal from "@/components/Modal/Modal";
 
 const page = async () => {
   const notes = await getNotes();

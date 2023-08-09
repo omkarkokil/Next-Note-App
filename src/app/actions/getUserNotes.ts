@@ -9,6 +9,9 @@ const getNotes = async () => {
             userIds: {
                 has: currentUser?.id
             }
+        },
+        orderBy: {
+            createdAt: "desc"
         }
     })
 
