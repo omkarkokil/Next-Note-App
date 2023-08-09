@@ -17,7 +17,7 @@ interface NoteId {
 const Modal: FC<NoteId> = ({ onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const { id } = useModal();
+  const { id, variant } = useModal();
   const data: NoteData = useGetNoteById(id);
 
   const {
@@ -92,7 +92,8 @@ const Modal: FC<NoteId> = ({ onClose }) => {
                 className="text-xl font-medium leading-normal dark:text-gray-200 text-gray-700"
                 id="note-app"
               >
-                {id ? "Edit Note" : "Add a Note"}
+                {variant === "form" && id ? "Edit Note" : "Add a Note"}
+                {variant === "note" && data.title}
               </h5>
               <button
                 className="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
@@ -118,40 +119,46 @@ const Modal: FC<NoteId> = ({ onClose }) => {
               </button>
             </div>
 
-            <form onSubmit={handleSubmit(OnSubmit)}>
-              <div className="relative flex-auto p-4" data-te-modal-body-ref>
-                <div className="mb-2">
-                  <Input
-                    register={register}
-                    label="Enter your title"
-                    errors={errors}
-                    id="title"
-                    type="text"
-                  />
-                </div>
-                <div>
-                  <Input
-                    register={register}
-                    label="Enter desc"
-                    errors={errors}
-                    id="desc"
-                    type="text"
-                  />
-                </div>
+            {variant === "note" ? (
+              <div className="py-6 px-4 text-medium text-gray-300 text-[.9em]">
+                {data.desc}
               </div>
+            ) : (
+              <form onSubmit={handleSubmit(OnSubmit)}>
+                <div className="relative flex-auto p-4" data-te-modal-body-ref>
+                  <div className="mb-2">
+                    <Input
+                      register={register}
+                      label="Enter your title"
+                      errors={errors}
+                      id="title"
+                      type="text"
+                    />
+                  </div>
+                  <div>
+                    <Input
+                      register={register}
+                      label="Enter desc"
+                      errors={errors}
+                      id="desc"
+                      type="text"
+                    />
+                  </div>
+                </div>
 
-              <div className="flex flex-shrink-0 flex-wrap items-center justify-end rounded-b-md border-t-2 dark:border-[#ffffff2d] border-[#0000002d] p-4 gap-2 ">
-                <Button
-                  type="button"
-                  data-te-modal-dismiss
-                  aria-label="Close"
-                  danger
-                >
-                  Close
-                </Button>
-                <Button type="submit">save changes</Button>
-              </div>
-            </form>
+                <div className="flex flex-shrink-0 flex-wrap items-center justify-end rounded-b-md border-t-2 dark:border-[#ffffff2d] border-[#0000002d] p-4 gap-2 ">
+                  <Button
+                    type="button"
+                    data-te-modal-dismiss
+                    aria-label="Close"
+                    danger
+                  >
+                    Close
+                  </Button>
+                  <Button type="submit">save changes</Button>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@ const page = async () => {
           <h1 className="text-3xl ">Hii 👍 {currentUser?.name}</h1>
           <h2 className="text-xl">Welcome to Note app</h2>
         </div>
-        <div className="flex flex-wrap gap-4 max-sm:justify-center w-full mt-5 ">
+        <div className="flex flex-wrap flex-shrink-0 gap-4 max-sm:justify-center w-full mt-5 ">
           <CreateNote />
           {notes.map((ele) => (
             <Note

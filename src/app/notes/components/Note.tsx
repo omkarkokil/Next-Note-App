@@ -53,9 +53,9 @@ const Note: FC<NoteProps> = ({ time, title, desc, id }) => {
               <AiFillDelete />
             </div>
             <div
+              onClick={() => toggleModal(id, "form")}
               data-te-toggle="modal"
               data-te-target="#exampleModal"
-              onClick={() => toggleModal(id)}
               data-te-ripple-init
               data-te-ripple-color="light"
               className="text-success p-1 rounded-lg dark:hover:bg-slate-50 hover:bg-gray-700  transition cursor-pointer"
@@ -71,8 +71,20 @@ const Note: FC<NoteProps> = ({ time, title, desc, id }) => {
           <p className="text-md text-black dark:text-slate-400">
             {desc.slice(0, 100)} {desc.length > 100 && "..."}
           </p>
-          <div className="mt-2">
-            <Button>Read More</Button>
+          <div
+            className="mt-2 w-max h-max"
+            data-te-toggle="modal"
+            data-te-target="#exampleModal"
+            data-te-ripple-init
+            data-te-ripple-color="light"
+          >
+            <Button
+              onClick={() => {
+                toggleModal(id, "note");
+              }}
+            >
+              Read More
+            </Button>
           </div>
         </div>
       </div>
