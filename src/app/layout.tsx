@@ -1,4 +1,3 @@
-"use client";
 import AuthContext from "@/context/AuthContext";
 import "./globals.css";
 import type { Metadata } from "next";
