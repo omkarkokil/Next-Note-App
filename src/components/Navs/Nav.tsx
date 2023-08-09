@@ -14,7 +14,7 @@ const Nav = () => {
   const { setTheme, theme } = useTheme();
   return (
     <>
-      <nav className="bg-white fixed transition-all   dark:bg-slate-800 flex flex-col gap-2 items-center  w-20 border-r justify-between border-gray-800/30  h-screen ">
+      <nav className="bg-white dark:bg-slate-800 fixed transition-all hidden   sm:flex flex-col gap-2 items-center w-20 border-r justify-between border-gray-800/30  h-screen ">
         <div>
           <div
             onClick={() => signOut()}

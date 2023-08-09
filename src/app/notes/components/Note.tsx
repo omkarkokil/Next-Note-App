@@ -28,14 +28,6 @@ const Note: FC<NoteProps> = ({ time, title, desc, id }) => {
   //   setEditId("");
   // }, [editId]);
 
-  useEffect(() => {
-    const init = async () => {
-      const { Modal, Ripple, initTE } = await import("tw-elements");
-      initTE({ Modal, Ripple });
-    };
-    init();
-  }, []);
-
   const onDelete = (id: string) => {
     axios
       .delete(`/api/notes/${id}`)
@@ -50,7 +42,7 @@ const Note: FC<NoteProps> = ({ time, title, desc, id }) => {
 
   return (
     <>
-      <div className="block  w-[25vw] h-max rounded-lg bg-neutral-50 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-slate-800">
+      <div className=" w-[80vw] sm:w-[35vw] lg:w-[25vw]  h-max rounded-lg bg-neutral-50 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-slate-800">
         <div className="border-b-2 flex justify-between border-[#0000002d] px-6 py-3 dark:text-slate-50 text-black">
           <p>{format(new Date(time), "p PP")}</p>
           <div className="flex gap-3 items-center text-xl">
@@ -84,7 +76,6 @@ const Note: FC<NoteProps> = ({ time, title, desc, id }) => {
           </div>
         </div>
       </div>
-      <Modal  />
     </>
   );
 };
