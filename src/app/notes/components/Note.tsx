@@ -48,7 +48,7 @@ const Note: FC<NoteProps> = ({ time, title, desc, id }) => {
           <div className="flex gap-3 items-center text-xl">
             <div
               onClick={() => onDelete(id)}
-              className="text-danger p-1 rounded-lg dark:hover:bg-slate-50 hover:bg-gray-700 transition cursor-pointer"
+              className="text-rose-500 p-1 rounded-lg dark:hover:bg-slate-50 hover:bg-gray-700 transition cursor-pointer"
             >
               <AiFillDelete />
             </div>
@@ -58,7 +58,7 @@ const Note: FC<NoteProps> = ({ time, title, desc, id }) => {
               data-te-target="#exampleModal"
               data-te-ripple-init
               data-te-ripple-color="light"
-              className="text-success p-1 rounded-lg dark:hover:bg-slate-50 hover:bg-gray-700  transition cursor-pointer"
+              className="text-green-500 p-1 rounded-lg dark:hover:bg-slate-50 hover:bg-gray-700  transition cursor-pointer"
             >
               <BiEdit />
             </div>
