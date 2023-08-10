@@ -1,5 +1,6 @@
 "use client";
 import "tw-elements/dist/css/tw-elements.min.css";
+
 const LoadingModal = () => {
   return (
     <div className="fixed z-50 bg-gray-700/50 dark:bg-gray-900/80 flex justify-center items-center  top-0 bottom-0 left-0 h-screen w-full">

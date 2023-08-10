@@ -10,8 +10,8 @@ const CreateNote = () => {
 
   useEffect(() => {
     const init = async () => {
-      const { Modal, Ripple, initTE } = await import("tw-elements");
-      initTE({ Modal, Ripple });
+      const { Modal, initTE } = await import("tw-elements");
+      initTE({ Modal });
     };
     init();
   }, []);

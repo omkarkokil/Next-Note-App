@@ -81,7 +81,7 @@ const Modal: FC<NoteId> = ({ onClose }) => {
       {isLoading && <LoadingModal />}
       <div
         data-te-modal-init
-        className="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
+        className="fixed left-0 top-10 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
         id="exampleModal"
         tabIndex={-1}
         aria-labelledby="note-app"
