@@ -4,6 +4,7 @@ import CreateNote from "./components/CreateNote";
 import getNotes from "../actions/getUserNotes";
 import getCurrentUser from "../actions/getCurrentUser";
 import Modal from "@/components/Modal/Modal";
+import LoadingModal from "@/components/Modal/LoadingModal";
 
 const page = async () => {
   const notes = await getNotes();

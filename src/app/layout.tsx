@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import ToastContext from "@/context/ToastContext";
 import { ThemeProvider } from "@/context/ThemeProvider";
-import "tw-elements/dist/css/tw-elements.min.css";
 
 const inter = Inter({ subsets: ["latin"] });
 

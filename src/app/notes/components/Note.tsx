@@ -79,6 +79,8 @@ const Note: FC<NoteProps> = ({ time, title, desc, id }) => {
             data-te-ripple-color="light"
           >
             <Button
+              type="button"
+              disabled={false}
               onClick={() => {
                 toggleModal(id, "note");
               }}

@@ -9,6 +9,8 @@ import { useRouter } from "next/navigation";
 import useModal from "@/hooks/useModal";
 import { useGetNoteById, NoteData } from "@/hooks/useGetNoteById";
 import { Notes } from "@prisma/client";
+import "tw-elements/dist/css/tw-elements.min.css";
+import LoadingModal from "./LoadingModal";
 
 interface NoteId {
   onClose?: () => void;
@@ -37,16 +39,19 @@ const Modal: FC<NoteId> = ({ onClose }) => {
     if (!id) {
       setValue("title", "");
       setValue("desc", "");
+      setIsLoading(false);
       return;
     }
+
     setValue("title", data.title);
     setValue("desc", data.desc);
-  }, [id, data]);
+  }, [data, id]);
 
   const OnSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (id === "" || id === undefined) {
       setIsLoading(true);
-      setValue("title ", "", { shouldValidate: true });
+      setValue("title", "", { shouldValidate: true });
+      setValue("desc", "", { shouldValidate: true });
       await axios
         .post("/api/notes", data)
         .then(() => {
@@ -59,8 +64,7 @@ const Modal: FC<NoteId> = ({ onClose }) => {
 
     if (id) {
       setIsLoading(true);
-      setValue("title", "", { shouldValidate: true });
-      setValue("desc", "", { shouldValidate: true });
+
       await axios
         .post(`/api/notes/${id}`, data)
         .then(() => {
@@ -74,6 +78,7 @@ const Modal: FC<NoteId> = ({ onClose }) => {
 
   return (
     <>
+      {isLoading && <LoadingModal />}
       <div
         data-te-modal-init
         className="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
@@ -92,7 +97,8 @@ const Modal: FC<NoteId> = ({ onClose }) => {
                 className="text-xl font-medium leading-normal dark:text-gray-200 text-gray-700"
                 id="note-app"
               >
-                {variant === "form" && id ? "Edit Note" : "Add a Note"}
+                {(variant === "form" && id && "Edit Note") ||
+                  (!id && "Add a Note")}
                 {variant === "note" && data.title}
               </h5>
               <button
@@ -120,7 +126,7 @@ const Modal: FC<NoteId> = ({ onClose }) => {
             </div>
 
             {variant === "note" ? (
-              <div className="py-6 px-4 text-medium text-gray-300 text-[.9em]">
+              <div className="py-6 px-4 text-medium dark:text-gray-300 text-gray-600 text-[.9em]">
                 {data.desc}
               </div>
             ) : (
@@ -151,6 +157,7 @@ const Modal: FC<NoteId> = ({ onClose }) => {
                     type="button"
                     data-te-modal-dismiss
                     aria-label="Close"
+                    secondary
                     danger
                   >
                     Close

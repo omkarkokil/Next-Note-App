@@ -1,6 +1,6 @@
 "use client";
 
-import Modal from "@/components/Modal/Modal";
+import Modals from "@/components/Modal/Modal";
 import useModal from "@/hooks/useModal";
 import { useEffect } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
@@ -31,7 +31,7 @@ const CreateNote = () => {
         </div>
       </div>
 
-      <Modal />
+      <Modals />
     </>
   );
 };

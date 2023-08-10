@@ -32,21 +32,25 @@ const Button: FC<ButtonProps> = ({
         aria-label="Close"
         className={clsx(
           `
-        flex
-        justify-center
-        rounded-md
-        px-3
-        py-2
-        text-sm
-        hover:text-white
-        dark:text-white
-        font-semibold
-      `,
+        flex 
+        justify-center 
+        rounded-md 
+        px-3 
+        py-2 
+        text-sm 
+        font-semibold 
+        focus-visible:outline 
+          focus-visible:outline-2 
+        focus-visible:outline-offset-2 
+        `,
+          danger &&
+            "hover:text-white  hover:bg-rose-600 focus-visible:outline-rose-600",
           disabled && "opacity-50 cursor-default",
           fullwidth && "w-full",
-          danger && "hover:bg-danger focus-visible:outline-rose-600",
-          secondary && "text-gray-900 dark:bg-slate-50",
-          !secondary && !danger && "bg-primary text-white"
+          secondary ? "text-gray-900 dark:text-white" : "text-white",
+          !secondary &&
+            !danger &&
+            "bg-sky-400  hover:bg-sky-600 focus-visible:outline-sky-600"
         )}
       >
         {children}
