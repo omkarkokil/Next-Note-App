@@ -45,7 +45,7 @@ const Modal: FC<NoteId> = ({ onClose }) => {
 
     setValue("title", data.title);
     setValue("desc", data.desc);
-  }, [variant, data, id]);
+  }, [id, data]);
 
   const OnSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (id === "" || id === undefined) {
